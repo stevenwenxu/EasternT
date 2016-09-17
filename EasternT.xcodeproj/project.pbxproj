@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		328893911D8DD3D500887F8C /* StringTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328893901D8DD3D500887F8C /* StringTokenizer.swift */; };
 		32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */; };
 		AF40205CA5B1D00258AD7552 /* Pods_EasternT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701400A36A7DC0233A995E38 /* Pods_EasternT.framework */; };
 		B04AD12A1D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04AD1291D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		328893901D8DD3D500887F8C /* StringTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTokenizer.swift; sourceTree = "<group>"; };
 		32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
 		701400A36A7DC0233A995E38 /* Pods_EasternT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasternT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		B0F0B9BA1D8CCEB200D85DE4 /* EasternT */ = {
 			isa = PBXGroup;
 			children = (
+				328893901D8DD3D500887F8C /* StringTokenizer.swift */,
 				B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */,
 				B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */,
 				32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */,
@@ -240,6 +243,7 @@
 				CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */,
 				B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */,
 				B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */,
+				328893911D8DD3D500887F8C /* StringTokenizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
