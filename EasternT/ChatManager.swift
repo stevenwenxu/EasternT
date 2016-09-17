@@ -9,11 +9,24 @@
 import Foundation
 import Quickblox
 
-class ChatManager : NSObject {
+class ChatManager : NSObject, QBChatDelegate {
+    
+    func signupAndLoginUser(userLogin: String, password:String) ->Void {
+        let user = QBUUser()
+        user.login = userLogin
+        user.password = password
+//        QBRequest.signUp(user, successBlock: <#T##((QBResponse, QBUUser?) -> Void)?##((QBResponse, QBUUser?) -> Void)?##(QBResponse, QBUUser?) -> Void#>, errorBlock: <#T##QBRequestErrorBlock?##QBRequestErrorBlock?##(QBResponse) -> Void#>)
+        QBRequest.logIn(withUserLogin: userLogin, password: password, successBlock: { (repsonse, user) in
+            print("succeed")
+            }) { (response) in
+                print("failed")
+        }
+    }
 
+    
     func connectUser(user:QBUUser) -> Void {
         QBChat.instance().connect(with: user) { (error) in
-            print("wtf??")
+            print("wtf?? " + error.debugDescription)
         }
 
     }
@@ -28,7 +41,7 @@ class ChatManager : NSObject {
             
         }
         
-        QBChat.instance().addDelegate(self as! QBChatDelegate)
+        QBChat.instance().addDelegate(self)
 
         let message: QBChatMessage = QBChatMessage()
         message.text = messageText

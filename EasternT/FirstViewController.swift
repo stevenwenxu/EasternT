@@ -72,14 +72,17 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     @IBAction func recordButtonTapped(sender: UIButton) {
         // QuickBlox Chat stuffs
         let chatManager = ChatManager()
-        let user = QBUUser()
-        user.externalUserID = 17850765
-        user.password = "12345678"
-        chatManager.connectUser(user: user)
+        let user1 = QBUUser()
+        user1.login = "user1"
+        user1.password = "12345678"
+        chatManager.signupAndLoginUser(userLogin: "user1", password: "12345678")
+        chatManager.connectUser(user: user1)
         let user2 = QBUUser()
         user2.externalUserID = 17850786
         user2.password = "12345678"
-        chatManager.connectUser(user: user2)
+        //chatManager.signupAndLoginUser(userLogin: "user2", password: "12345678")
+        //chatManager.connectUser(user: user2)
+        
 
         chatManager.createChatDialogAndSendMessage(dialogName: "first", messageText: "fuck you", userIds: [17850765, 17850786])
         

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QBSettings.setAuthKey("mGNGayd52Exxuaq");
         QBSettings.setAuthSecret("HSYJf2fbMrNhUtY");
         QBSettings.setAccountKey("sDNgiKC36vp2hz4J1pep");
+        QBSettings.setAutoReconnectEnabled(true);
         // Override point for customization after application launch.
         return true
     }
