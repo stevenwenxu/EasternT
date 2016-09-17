@@ -68,23 +68,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
 
     @IBAction func recordButtonTapped(sender: UIButton) {
         // QuickBlox Chat stuffs
-        let user1 = QBUUser()
-        let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
-        user1.login = userDeviceID
-        user1.password = "12345678"
-        chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
-        chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
-        userId = user1.externalUserID
-        chatManager.connectUser(user: user1)
-
-        let user2 = QBUUser()
-        user2.externalUserID = 17850786
-        user2.password = "12345678"
-        //chatManager.signupAndLoginUser(userLogin: "user2", password: "12345678")
-        //chatManager.connectUser(user: user2)
-
-        chatManager.createChatDialogAndSendMessage(dialogName: "first", messageText: "fuck you", userIds: [17850765, 17850786])
-        
+    
         let isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
         let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
@@ -97,6 +81,25 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
+                    chatManager.disconnectUser()
+
+                    let user1 = QBUUser()
+                    let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
+                    
+                    user1.login = userDeviceID
+                    user1.password = "12345678"
+                    
+                    self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
+                    self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
+                    
+                    print("----fuckers----")
+                    print(user1.blobID)
+                    print(user1.login)
+                    print(user1.id)
+                    print("----fuckers end---")
+                    self.chatManager.connectUser(user: user1)
+                    self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
+
                 }
             }
         } else {

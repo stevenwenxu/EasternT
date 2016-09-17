@@ -34,6 +34,13 @@ class ChatManager : NSObject, QBChatDelegate {
         }
     }
 
+    func disconnectUser() -> Void {
+        if QBChat.instance().isConnected {
+            QBChat.instance().disconnect(completionBlock: { (error) in
+                print("Error in disconnecting Users", error)
+            })
+        }
+    }
     
     func connectUser(user:QBUUser) -> Void {
         QBChat.instance().connect(with: user) { (error) in
@@ -43,10 +50,10 @@ class ChatManager : NSObject, QBChatDelegate {
     }
     
     func createChatDialogAndSendMessage(dialogName: String, messageText: String, userIds: [NSNumber])->Void {
-        let privateChatDialog = QBChatDialog(dialogID: nil, type: QBChatDialogType.private)
-        privateChatDialog.name = dialogName
-        privateChatDialog.occupantIDs = userIds
-        QBRequest.createDialog(privateChatDialog, successBlock: { (response: QBResponse?, createdDialog : QBChatDialog?) -> Void in
+        let chatDialog = QBChatDialog(dialogID: nil, type: QBChatDialogType.group)
+        chatDialog.name = dialogName
+        chatDialog.occupantIDs = userIds
+        QBRequest.createDialog(chatDialog, successBlock: { (response: QBResponse?, createdDialog : QBChatDialog?) -> Void in
             print("fuck yell")
         }) { (responce : QBResponse!) -> Void in
             print("error", responce)
@@ -60,12 +67,12 @@ class ChatManager : NSObject, QBChatDelegate {
         params["save_to_history"] = true
         message.customParameters = params
         
-        privateChatDialog.send(message, completionBlock: { (error) in
-            print("Sending message" + message.text!)
+        chatDialog.send(message, completionBlock: { (error) in
+            print("Sending message in sendMessage method " + message.text!)
         });
     }
     
-    func chatDidReceiveMessage(message: QBChatMessage!) {
+    func chatDidReceiveMessage(message: QBChatMessage!){
         print("You got the message" + message.text!)
     }
 }
