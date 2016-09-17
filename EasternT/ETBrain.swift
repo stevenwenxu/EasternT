@@ -9,13 +9,21 @@
 import Foundation
 import Speech
 
+enum LanguageType: String {
+    case english = "English"
+    case chinese = "Chinese"
+    case german = "German"
+
+    static let allValues = [english, chinese, german]
+}
+
 class ETBrain : NSObject {
 
     func speechToText() -> String? {
         return nil
     }
 
-    static func textToSpeech(text: String, languageType: LanguageType) {
+    func textToSpeech(text: String, languageType: LanguageType) {
         var languageTypeString: String?
         
         switch languageType {
@@ -29,9 +37,10 @@ class ETBrain : NSObject {
             NSLog("Fatal: undefined language type")
             return
         }
-        
+
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+
         let synth = AVSpeechSynthesizer()
-        
         let myUtterance = AVSpeechUtterance(string: text)
         myUtterance.rate = 0.5
         myUtterance.voice = AVSpeechSynthesisVoice(language: languageTypeString)

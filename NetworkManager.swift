@@ -54,7 +54,7 @@ class NetworkManager {
     static let sharedInstance = NetworkManager()
     private init () {}
 
-    func getTranslate(originText: String, from: LanguageType, to: LanguageType) {
+    func getTranslate(originText: String, from: LanguageType, to: LanguageType, callback: ((String?) -> ())?) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(TokenManager.sharedInstance.getToken()!)"
         ]
@@ -74,8 +74,10 @@ class NetworkManager {
                                 let str = String(data: data, encoding: .utf8),
                                 let result = self.parseTranslationXML(string: str) {
                                     NSLog("The translated result is: \(result)")
+                                callback?(result)
                             } else {
                                 NSLog("Could not parse server translation data")
+                                callback?(nil)
                             }
         }
     }

@@ -11,7 +11,7 @@ import UIKit
 import Speech
 
 protocol WriteValueBackDelegate : class {
-    func writeValueBack(languageName: String)
+    func writeValueBack(languageType: LanguageType)
 }
 
 class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteValueBackDelegate {
@@ -25,15 +25,26 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     @IBOutlet weak var recordButtonB: UIButton!
     @IBOutlet weak var chooseLangButtonA: UIButton!
     @IBOutlet weak var chooseLangButtonB: UIButton!
+    var languageTypeA: LanguageType = .english
+    var languageTypeB: LanguageType = .chinese
 
     @IBOutlet weak var speechLabel: UILabel!
     
     var indexToggle : Int = 0
+    let doge = UIImage(named: "doge")
+    let normal = UIImage(named: "recordButton")
+
+    var inputText = ""
 
     private var isRecordingInProgress = false {
         didSet {
-            self.recordButtonA.isHighlighted = !self.isRecordingInProgress
-            self.recordButtonB.isHighlighted = !self.isRecordingInProgress
+            if (self.isRecordingInProgress) {
+                self.recordButtonA.setImage(self.doge, for: .normal)
+                self.recordButtonB.setImage(self.doge, for: .normal)
+            } else {
+                self.recordButtonA.setImage(self.normal, for: .normal)
+                self.recordButtonB.setImage(self.normal, for: .normal)
+            }
         }
     }
 
@@ -62,11 +73,16 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
-
             self.isRecordingInProgress = false
+            NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: self.languageTypeA, to: self.languageTypeB) { string in
+                if let str = string {
+                    self.model.textToSpeech(text: str, languageType: self.languageTypeB)
+                }
+            }
         } else {
             do {
                 try self.startRecording()
+                self.isRecordingInProgress = true
             } catch {
                 NSLog("Got exception in startRecording: \(error)")
             }
@@ -97,8 +113,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             self.recognitionTask = nil
         }
 
+        
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(AVAudioSessionCategoryRecord)
+        try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try audioSession.setMode(AVAudioSessionModeMeasurement)
         try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
 
@@ -120,7 +137,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             }
 
             if let weakSelf = self, let result = result {
-                weakSelf.isRecordingInProgress = true
+                weakSelf.inputText = result.bestTranscription.formattedString
                 weakSelf.speechLabel.text = result.bestTranscription.formattedString
                 isFinal = result.isFinal
 
@@ -146,11 +163,13 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     
     // MARK: - WriteValueBackDelegate
     
-    func writeValueBack(languageName: String) {
+    func writeValueBack(languageType: LanguageType) {
         if 1 == self.indexToggle {
-            self.chooseLangButtonA.setTitle(languageName, for: .normal)
+            self.chooseLangButtonA.setTitle(languageType.rawValue, for: .normal)
+            self.languageTypeA = languageType
         } else {
-            self.chooseLangButtonB.setTitle(languageName, for: .normal)
+            self.chooseLangButtonB.setTitle(languageType.rawValue, for: .normal)
+            self.languageTypeB = languageType
         }
     }
 
