@@ -17,6 +17,7 @@
 		B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */; };
 		B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */; };
 		B0F0B9D21D8D317F00D85DE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */; };
+		CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../NetworkManager.swift; sourceTree = "<group>"; };
 		CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.release.xcconfig"; sourceTree = "<group>"; };
 		CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "EasternT/Bridging-Header.h"; sourceTree = "<group>"; };
+		CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				B0F0B9C21D8CCEB200D85DE4 /* Assets.xcassets */,
 				B0F0B9C41D8CCEB200D85DE4 /* LaunchScreen.storyboard */,
 				B0F0B9C71D8CCEB200D85DE4 /* Info.plist */,
+				CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */,
 			);
 			path = EasternT;
 			sourceTree = "<group>";
@@ -216,7 +219,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -230,6 +233,7 @@
 				32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */,
 				B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */,
 				B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */,
+				CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */,
 				B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */,
 				B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */,
 			);

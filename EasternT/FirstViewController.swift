@@ -55,9 +55,23 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             }
             controller.delegate = self
         }
-    }
+            }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
+        // QuickBlox Chat stuffs
+        let chatManager = ChatManager()
+        let user = QBUUser()
+        user.externalUserID = 17850765
+        user.password = "12345678"
+        chatManager.connectUser(user: user)
+        let user2 = QBUUser()
+        user2.externalUserID = 17850786
+        user2.password = "12345678"
+        chatManager.connectUser(user: user2)
+
+        chatManager.createChatDialogAndSendMessage(dialogName: "first", messageText: "fuck you", userIds: [17850765, 17850786])
+        
+        
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -90,6 +104,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     }
 
     func startRecording() throws {
+        
         // Cancel the previous task if it's running.
         if let recognitionTask = self.recognitionTask {
             recognitionTask.cancel()
