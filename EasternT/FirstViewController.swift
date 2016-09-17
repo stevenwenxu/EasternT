@@ -210,11 +210,17 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             self.selectLanguageContainerBottom.constant = -250
             self.view.layoutIfNeeded()
         }
+        
+        if self.chooseLangButtonA == self.selectedChooseLangBtn {
+            self.languageTypeA = languageType
+        } else {
+            self.languageTypeB = languageType
+        }
     }
 
     // MARK: - SFSpeechRecognizerDelegate
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.recordButtonA.isEnabled = available
-        self.recordButtonA.isEnabled = available
+        self.recordButtonB.isEnabled = available
     }
 }
