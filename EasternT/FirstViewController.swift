@@ -6,6 +6,7 @@
 //  Copyright © 2016 EasternT. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Speech
 
@@ -25,6 +26,13 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     @IBOutlet weak var speechLabel: UILabel!
     
     var indexToggle : Int = 0
+
+    private var isRecordingInProgress = false {
+        didSet {
+            self.recordButtonA.isHighlighted = !self.isRecordingInProgress
+            self.recordButtonB.isHighlighted = !self.isRecordingInProgress
+        }
+    }
 
     let model = ETBrain()
 
@@ -47,12 +55,17 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
-        if self.audioEngine.isRunning {
+        if audioEngine.isRunning {
             self.audioEngine.stop()
-            recognitionRequest?.endAudio()
-            sender.isEnabled = false
+            self.recognitionRequest?.endAudio()
+
+            self.isRecordingInProgress = false
         } else {
-            try! self.startRecording(sender: sender)
+            do {
+                try self.startRecording()
+            } catch {
+                NSLog("Got exception in startRecording: \(error)")
+            }
         }
     }
 
@@ -65,6 +78,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
                     self.recordButtonB.isEnabled = true
 
                 default:
+                    NSLog("Permission not right!!")
                     self.recordButtonA.isEnabled = false
                     self.recordButtonB.isEnabled = false
                 }
@@ -72,7 +86,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         }
     }
 
-    func startRecording(sender: UIButton) throws {
+    func startRecording() throws {
         // Cancel the previous task if it's running.
         if let recognitionTask = self.recognitionTask {
             recognitionTask.cancel()
@@ -94,22 +108,25 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
 
         // A recognition task represents a speech recognition session.
         // We keep a reference to the task so that it can be cancelled.
-        self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-            var isFinal = false
+        self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
 
-            if let result = result {
-                self.speechLabel.text = result.bestTranscription.formattedString
-                isFinal = result.isFinal
+            var isFinal = false
+            if let error = error {
+                NSLog("Got error in recording: \(error)")
             }
 
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
+            if let weakSelf = self, let result = result {
+                weakSelf.isRecordingInProgress = true
+                weakSelf.speechLabel.text = result.bestTranscription.formattedString
+                isFinal = result.isFinal
 
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-
-                sender.isEnabled = true
+                if error != nil || isFinal {
+                    weakSelf.audioEngine.stop()
+                    inputNode.removeTap(onBus: 0)
+                    weakSelf.recognitionRequest = nil
+                    weakSelf.recognitionTask = nil
+                    weakSelf.isRecordingInProgress = false
+                }
             }
         }
 
@@ -119,11 +136,8 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         }
 
         self.audioEngine.prepare()
-
         try self.audioEngine.start()
-
         self.speechLabel.text = "(Go ahead, I'm listening)"
-
     }
     
     // MARK: - WriteValueBackDelegate
@@ -142,5 +156,5 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         self.recordButtonA.isEnabled = available
     }
 
-}
 
+}

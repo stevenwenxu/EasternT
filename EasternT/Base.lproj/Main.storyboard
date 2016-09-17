@@ -31,19 +31,16 @@
                                 <frame key="frameInset" minX="187" minY="480" width="172" height="179"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="recordButton"/>
-                                <connections>
-                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BcC-wd-gW2"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-3c-WaW" userLabel="recordButton1">
                                 <frame key="frameInset" minX="16" minY="480" width="172" height="167"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="recordButton"/>
                                 <connections>
-                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvM-U2-Hw0"/>
+                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfT-Mt-Zsr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=".......................................Hello..........................." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-cX-OTr" userLabel="recordContent">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Press and hold to talk)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-cX-OTr" userLabel="recordContent">
                                 <frame key="frameInset" minX="16" minY="358" width="347" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -63,8 +60,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="kn8-gg-kU9"/>
                     <connections>
-                        <outlet property="recordButtonA" destination="9HS-qW-cRH" id="4Rs-uF-DDC"/>
-                        <outlet property="recordButtonB" destination="jvh-E3-iOu" id="6gR-OB-Tto"/>
+                        <outlet property="recordButtonA" destination="VY6-3c-WaW" id="DtY-Cg-x9M"/>
+                        <outlet property="recordButtonB" destination="H6S-Xo-NZ4" id="rqR-7F-41B"/>
                         <outlet property="speechLabel" destination="3Es-cX-OTr" id="1oB-kX-ryd"/>
                     </connections>
                 </viewController>
