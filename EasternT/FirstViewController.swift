@@ -9,7 +9,11 @@
 import UIKit
 import Speech
 
-class FirstViewController: UIViewController, SFSpeechRecognizerDelegate {
+protocol WriteValueBackDelegate : class {
+    func writeValueBack(languageName: String)
+}
+
+class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteValueBackDelegate {
 
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -19,6 +23,8 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate {
     @IBOutlet weak var recordButtonA: UIButton!
     @IBOutlet weak var recordButtonB: UIButton!
     @IBOutlet weak var speechLabel: UILabel!
+    
+    var indexToggle : Int = 0
 
     let model = ETBrain()
 
@@ -27,6 +33,17 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate {
         super.viewDidLoad()
         self.speechRecognizer.delegate = self
         self.requestPermission()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? SelectLanguageViewController {
+            if segue.identifier == "LanguageSelectionSegue2" {
+                self.indexToggle = 1
+            } else {
+                self.indexToggle = 0
+            }
+            controller.delegate = self
+        }
     }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
@@ -107,6 +124,16 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate {
 
         self.speechLabel.text = "(Go ahead, I'm listening)"
 
+    }
+    
+    // MARK: - WriteValueBackDelegate
+    
+    func writeValueBack(languageName: String) {
+        if 1 == self.indexToggle {
+            self.recordButtonA.setTitle(languageName, for: .normal)
+        } else {
+            self.recordButtonB.setTitle(languageName, for: .normal)
+        }
     }
 
     // MARK: - SFSpeechRecognizerDelegate
