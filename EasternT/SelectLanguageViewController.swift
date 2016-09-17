@@ -9,14 +9,6 @@
 import Foundation
 import UIKit
 
-enum LanguageType: String {
-    case english = "English"
-    case chinese = "Chinese"
-    case german = "German"
-    
-    static let allValues = [english, chinese, german]
-}
-
 class SelectLanguageViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -34,14 +26,16 @@ class SelectLanguageViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell") as! SelectLanguageTableViewCell
 
         if indexPath.row <= LanguageType.allValues.count {
-            cell.textLabel?.text = LanguageType.allValues[indexPath.row].rawValue
+            cell.languageType = LanguageType.allValues[indexPath.row]
+            cell.textLabel?.text = cell.languageType.rawValue
         } else {
+            cell.textLabel?.text = "Oops..."
+            cell.languageType = nil
             NSLog("Oops language selection tableView get index larger than option array length")
         }
-        
         return cell
     }
     
@@ -50,8 +44,8 @@ class SelectLanguageViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let choice = self.tableView.cellForRow(at: indexPath)?.textLabel?.text {
-            self.delegate?.writeValueBack(languageName: choice)
+        if let choice = (self.tableView.cellForRow(at: indexPath) as? SelectLanguageTableViewCell)?.languageType {
+            self.delegate?.writeValueBack(languageType: choice)
             let _ = self.navigationController?.popViewController(animated: true)
         }
     }

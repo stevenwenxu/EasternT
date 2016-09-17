@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */; };
 		AF40205CA5B1D00258AD7552 /* Pods_EasternT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701400A36A7DC0233A995E38 /* Pods_EasternT.framework */; };
+		B04AD12A1D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04AD1291D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift */; };
 		B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */; };
 		B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */; };
 		B0F0B9C11D8CCEB200D85DE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0F0B9BF1D8CCEB200D85DE4 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
 		701400A36A7DC0233A995E38 /* Pods_EasternT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasternT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.debug.xcconfig"; sourceTree = "<group>"; };
+		B04AD1291D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageTableViewCell.swift; sourceTree = "<group>"; };
 		B0F0B9B81D8CCEB200D85DE4 /* EasternT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasternT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */,
 				B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */,
 				32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */,
+				B04AD1291D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift */,
 				B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */,
 				B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */,
 				B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */,
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04AD12A1D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift in Sources */,
 				B0F0B9D21D8D317F00D85DE4 /* NetworkManager.swift in Sources */,
 				32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */,
 				B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */,
