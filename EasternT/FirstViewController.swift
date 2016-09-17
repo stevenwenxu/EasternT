@@ -81,7 +81,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    chatManager.disconnectUser()
+                    self.chatManager.disconnectUser()
 
                     let user1 = QBUUser()
                     let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
