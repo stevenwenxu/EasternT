@@ -27,6 +27,9 @@ class ChatManager : NSObject {
         }) { (responce : QBResponse!) -> Void in
             
         }
+        
+        QBChat.instance().addDelegate(self as! QBChatDelegate)
+
         let message: QBChatMessage = QBChatMessage()
         message.text = messageText
         let params : NSMutableDictionary = NSMutableDictionary()
