@@ -47,10 +47,6 @@ class TokenManager {
 
 class NetworkManager {
     
-    static let languageTypeStringMap = [LanguageType.chinese: "zh-CHS",
-                                        LanguageType.english: "en",
-                                        LanguageType.german: "de"]
-    
     static let sharedInstance = NetworkManager()
     private init () {}
 
@@ -60,8 +56,8 @@ class NetworkManager {
         ]
         
         let params: Parameters = ["text": originText,
-                                               "from": NetworkManager.languageTypeStringMap[from]!,
-                                               "to": NetworkManager.languageTypeStringMap[to]!]
+                                               "from": languageTypeStringMapA[from]!,
+                                               "to": languageTypeStringMapA[to]!]
         
         let url = "https://api.microsofttranslator.com/v2/Http.svc/Translate?"
 

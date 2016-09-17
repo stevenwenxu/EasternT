@@ -17,6 +17,14 @@ enum LanguageType: String {
     static let allValues = [english, chinese, german]
 }
 
+let languageTypeStringMapA = [LanguageType.chinese: "zh-CHS",
+                                    LanguageType.english: "en",
+                                    LanguageType.german: "de"]
+
+let languageTypeStringMapB = [LanguageType.chinese: "zh-CN",
+                                    LanguageType.english: "en-US",
+                                    LanguageType.german: "de-DE"]
+
 class ETBrain : NSObject {
 
     func speechToText() -> String? {
@@ -26,18 +34,8 @@ class ETBrain : NSObject {
     func textToSpeech(text: String, languageType: LanguageType) {
         var languageTypeString: String?
         
-        switch languageType {
-        case LanguageType.english:
-            languageTypeString = "en-US"
-        case LanguageType.german:
-            languageTypeString = "de-DE"
-        case LanguageType.chinese:
-            languageTypeString = "zh-CN"
-        default:
-            NSLog("Fatal: undefined language type")
-            return
-        }
-
+        languageTypeString = languageTypeStringMapB[languageType]!
+        
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
 
         let synth = AVSpeechSynthesizer()

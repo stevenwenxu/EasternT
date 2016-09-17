@@ -16,7 +16,7 @@ protocol WriteValueBackDelegate : class {
 
 class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteValueBackDelegate {
 
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
@@ -85,6 +85,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             }
         } else {
             do {
+                speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: languageTypeStringMapB[languageTypeFrom]!))!
+                speechRecognizer.delegate = self
+                
                 try self.startRecording()
                 self.isRecordingInProgress = true
             } catch {
