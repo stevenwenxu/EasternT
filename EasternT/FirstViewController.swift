@@ -33,7 +33,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     var indexToggle : Int = 0
     let doge = UIImage(named: "doge")
     let normal = UIImage(named: "recordButton")
-
+    let chatManager = ChatManager()
+    var userId : UInt = 0
+    
     var inputText = ""
 
     private var isRecordingInProgress = false {
@@ -71,21 +73,16 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
 
     @IBAction func recordButtonTapped(sender: UIButton) {
         // QuickBlox Chat stuffs
-        let chatManager = ChatManager()
         let user1 = QBUUser()
-        user1.login = "user1"
+        let userDeviceID = "dev1"
+        user1.login = userDeviceID
         user1.password = "12345678"
-        chatManager.signupAndLoginUser(userLogin: "user1", password: "12345678")
+        chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
+        chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
+        userId = user1.externalUserID
         chatManager.connectUser(user: user1)
-        let user2 = QBUUser()
-        user2.externalUserID = 17850786
-        user2.password = "12345678"
-        //chatManager.signupAndLoginUser(userLogin: "user2", password: "12345678")
-        //chatManager.connectUser(user: user2)
-        
 
-        chatManager.createChatDialogAndSendMessage(dialogName: "first", messageText: "fuck you", userIds: [17850765, 17850786])
-        
+        chatManager.createChatDialogAndSendMessage(dialogName: "lol", messageText: "fuck you", userIds: [NSNumber(value:userId)])
         
         let isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
@@ -190,6 +187,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     // MARK: - WriteValueBackDelegate
     
     func writeValueBack(languageType: LanguageType) {
+        
         if 1 == self.indexToggle {
             self.chooseLangButtonA.setTitle(languageType.rawValue, for: .normal)
             self.languageTypeA = languageType

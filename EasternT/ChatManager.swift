@@ -11,15 +11,26 @@ import Quickblox
 
 class ChatManager : NSObject, QBChatDelegate {
     
-    func signupAndLoginUser(userLogin: String, password:String) ->Void {
+    func signupUser(userLogin: String, password: String) -> Void {
         let user = QBUUser()
         user.login = userLogin
         user.password = password
-//        QBRequest.signUp(user, successBlock: <#T##((QBResponse, QBUUser?) -> Void)?##((QBResponse, QBUUser?) -> Void)?##(QBResponse, QBUUser?) -> Void#>, errorBlock: <#T##QBRequestErrorBlock?##QBRequestErrorBlock?##(QBResponse) -> Void#>)
-        QBRequest.logIn(withUserLogin: userLogin, password: password, successBlock: { (repsonse, user) in
-            print("succeed")
+        QBRequest.signUp(user, successBlock: { (response, user) in
+            print("successfully signup")
             }) { (response) in
-                print("failed")
+               NSLog("Error: %@", response);
+        }
+    }
+    
+    func loginUser(userLogin: String, password:String) ->Void {
+        let user = QBUUser()
+        user.login = userLogin
+        user.password = password
+        QBRequest.logIn(withUserLogin: userLogin, password: password, successBlock: { (repsonse, user) in
+            print("succeed login")
+            }) { (response) in
+                print("failed login")
+                print("error", response)
         }
     }
 
@@ -38,7 +49,7 @@ class ChatManager : NSObject, QBChatDelegate {
         QBRequest.createDialog(privateChatDialog, successBlock: { (response: QBResponse?, createdDialog : QBChatDialog?) -> Void in
             print("fuck yell")
         }) { (responce : QBResponse!) -> Void in
-            
+            print("error", responce)
         }
         
         QBChat.instance().addDelegate(self)
