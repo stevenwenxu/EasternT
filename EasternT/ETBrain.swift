@@ -49,4 +49,8 @@ class ETBrain : NSObject {
         let translateApiUrl = "https://api.datamarket.azure.com/data.ashx/Bing/microsofttranslatorspeech/v1/Translation"
         return ""
     }
+    
+    func tokenizeChinese(originText: String) -> [String] {
+        return originText.tokenize()
+    }
 }

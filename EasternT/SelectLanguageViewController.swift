@@ -46,7 +46,6 @@ class SelectLanguageViewController : UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let choice = (self.tableView.cellForRow(at: indexPath) as? SelectLanguageTableViewCell)?.languageType {
             self.delegate?.writeValueBack(languageType: choice)
-            let _ = self.navigationController?.popViewController(animated: true)
         }
     }
 }

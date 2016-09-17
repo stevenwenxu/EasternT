@@ -25,12 +25,15 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     @IBOutlet weak var recordButtonB: UIButton!
     @IBOutlet weak var chooseLangButtonA: UIButton!
     @IBOutlet weak var chooseLangButtonB: UIButton!
+    var selectedChooseLangBtn: UIButton!
+    @IBOutlet var selectLanguageContainerBottom: NSLayoutConstraint!
+    @IBOutlet weak var selectLanguageContainer: UIView!
+
     var languageTypeA: LanguageType = .english
     var languageTypeB: LanguageType = .chinese
 
     @IBOutlet weak var speechLabel: UILabel!
     
-    var indexToggle : Int = 0
     let doge = UIImage(named: "doge")
     let normal = UIImage(named: "recordButton")
     let chatManager = ChatManager()
@@ -58,23 +61,15 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         TokenManager.sharedInstance.refreshToken()
         self.speechRecognizer.delegate = self
         self.requestPermission()
+
+        self.chooseLangButtonA.tag = 0
+        self.chooseLangButtonB.tag = 1
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? SelectLanguageViewController {
-            if segue.identifier == "LanguageSelectionSegue2" {
-                self.indexToggle = 1
-            } else {
-                self.indexToggle = 0
-            }
-            controller.delegate = self
-        }
-            }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
         // QuickBlox Chat stuffs
         let user1 = QBUUser()
-        let userDeviceID = "dev1"
+        let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
         user1.login = userDeviceID
         user1.password = "12345678"
         chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
@@ -82,7 +77,13 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         userId = user1.externalUserID
         chatManager.connectUser(user: user1)
 
-        chatManager.createChatDialogAndSendMessage(dialogName: "lol", messageText: "fuck you", userIds: [NSNumber(value:userId)])
+        let user2 = QBUUser()
+        user2.externalUserID = 17850786
+        user2.password = "12345678"
+        //chatManager.signupAndLoginUser(userLogin: "user2", password: "12345678")
+        //chatManager.connectUser(user: user2)
+
+        chatManager.createChatDialogAndSendMessage(dialogName: "first", messageText: "fuck you", userIds: [17850765, 17850786])
         
         let isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
@@ -111,6 +112,21 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         }
     }
 
+    @IBAction func languageButtonDidTap(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) {
+            self.selectLanguageContainerBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }
+        self.selectedChooseLangBtn = sender
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "selectLanguageSegue") {
+            let selectLanguageVC = segue.destination as! SelectLanguageViewController
+            selectLanguageVC.delegate = self
+        }
+    }
+
     func requestPermission() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
@@ -135,7 +151,6 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             recognitionTask.cancel()
             self.recognitionTask = nil
         }
-
         
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -187,13 +202,10 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     // MARK: - WriteValueBackDelegate
     
     func writeValueBack(languageType: LanguageType) {
-        
-        if 1 == self.indexToggle {
-            self.chooseLangButtonA.setTitle(languageType.rawValue, for: .normal)
-            self.languageTypeA = languageType
-        } else {
-            self.chooseLangButtonB.setTitle(languageType.rawValue, for: .normal)
-            self.languageTypeB = languageType
+        UIView.animate(withDuration: 0.5) {
+            self.selectedChooseLangBtn?.setTitle(languageType.rawValue, for: .normal)
+            self.selectLanguageContainerBottom.constant = -250
+            self.view.layoutIfNeeded()
         }
     }
 
@@ -202,6 +214,4 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         self.recordButtonA.isEnabled = available
         self.recordButtonA.isEnabled = available
     }
-
-
 }
