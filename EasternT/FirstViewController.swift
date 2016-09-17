@@ -88,9 +88,10 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
         let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
         
-        if audioEngine.isRunning {
+        if audioEngine.isRunning || self.isRecordingInProgress {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
+            audioEngine.inputNode?.removeTap(onBus: 0)
             self.isRecordingInProgress = false
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
