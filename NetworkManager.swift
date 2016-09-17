@@ -84,8 +84,13 @@ class NetworkManager {
 
     private func parseTranslationXML(string: String) -> String? {
         let regex = try! NSRegularExpression(pattern: "<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">(.*)</string>")
-        let match = regex.matches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))[0]
-        return (string as NSString).substring(with: match.rangeAt(1))
+        let match = regex.matches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))
+        
+        if match.count > 0 {
+            return (string as NSString).substring(with: match[0].rangeAt(1))
+        } else {
+            return nil
+        }
     }
     
 }

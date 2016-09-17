@@ -70,13 +70,17 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
+        let isLeftButton = sender == self.recordButtonA
+        let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
+        let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
+        
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.isRecordingInProgress = false
-            NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: self.languageTypeA, to: self.languageTypeB) { string in
+            NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
-                    self.model.textToSpeech(text: str, languageType: self.languageTypeB)
+                    self.model.textToSpeech(text: str, languageType: languageTypeTo)
                 }
             }
         } else {
