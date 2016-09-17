@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */; };
+		AF40205CA5B1D00258AD7552 /* Pods_EasternT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701400A36A7DC0233A995E38 /* Pods_EasternT.framework */; };
 		B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */; };
 		B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */; };
 		B0F0B9C11D8CCEB200D85DE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0F0B9BF1D8CCEB200D85DE4 /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
+		701400A36A7DC0233A995E38 /* Pods_EasternT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasternT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.debug.xcconfig"; sourceTree = "<group>"; };
 		B0F0B9B81D8CCEB200D85DE4 /* EasternT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasternT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F0B9BB1D8CCEB200D85DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,8 @@
 		B0F0B9C71D8CCEB200D85DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTranslator.swift; sourceTree = "<group>"; };
 		B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETBrain.swift; sourceTree = "<group>"; };
+		CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.release.xcconfig"; sourceTree = "<group>"; };
+		CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "EasternT/Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +40,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF40205CA5B1D00258AD7552 /* Pods_EasternT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		690062F6CD72E4CE46255E66 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */,
+				CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B0F0B9AF1D8CCEB200D85DE4 = {
 			isa = PBXGroup;
 			children = (
+				CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */,
 				B0F0B9BA1D8CCEB200D85DE4 /* EasternT */,
 				B0F0B9B91D8CCEB200D85DE4 /* Products */,
+				690062F6CD72E4CE46255E66 /* Pods */,
+				CEEB0D2047870BE09AAC6924 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +91,14 @@
 			path = EasternT;
 			sourceTree = "<group>";
 		};
+		CEEB0D2047870BE09AAC6924 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				701400A36A7DC0233A995E38 /* Pods_EasternT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0F0B9CA1D8CCEB200D85DE4 /* Build configuration list for PBXNativeTarget "EasternT" */;
 			buildPhases = (
+				AE0BECB6398DA305BA45E7A9 /* [CP] Check Pods Manifest.lock */,
 				B0F0B9B41D8CCEB200D85DE4 /* Sources */,
 				B0F0B9B51D8CCEB200D85DE4 /* Frameworks */,
 				B0F0B9B61D8CCEB200D85DE4 /* Resources */,
+				2A6793C20DB6F2E0131DFA1E /* [CP] Embed Pods Frameworks */,
+				77B7E8DC3C939959C24D4BF6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,6 +169,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A6793C20DB6F2E0131DFA1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasternT/Pods-EasternT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77B7E8DC3C939959C24D4BF6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasternT/Pods-EasternT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE0BECB6398DA305BA45E7A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0F0B9B41D8CCEB200D85DE4 /* Sources */ = {
@@ -269,28 +346,34 @@
 		};
 		B0F0B9CB1D8CCEB200D85DE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6E2PC57P73;
+				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = EasternT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B0F0B9CC1D8CCEB200D85DE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6E2PC57P73;
+				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = EasternT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

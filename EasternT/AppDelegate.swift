@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import Quickblox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        QBSettings.setApplicationID(47073);
+        QBSettings.setAuthKey("mGNGayd52Exxuaq");
+        QBSettings.setAuthSecret("HSYJf2fbMrNhUtY");
+        QBSettings.setAccountKey("sDNgiKC36vp2hz4J1pep");
+        
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
