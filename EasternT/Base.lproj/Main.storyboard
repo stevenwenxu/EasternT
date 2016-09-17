@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--First View Controller-->
+        <!--Eastern T-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="EasternT" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,54 +19,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HS-qW-cRH" userLabel="languageImage1">
-                                <frame key="frameInset" minX="16" minY="136" width="172" height="188"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="English"/>
-                                <connections>
-                                    <segue destination="jDS-qG-pre" kind="show" identifier="LanguageSelectionSegue2" id="hMj-9S-JWO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6S-Xo-NZ4" userLabel="recordButton2">
-                                <frame key="frameInset" minX="187" minY="480" width="172" height="179"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="recordButton"/>
-                                <connections>
-                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xKs-VK-S0u"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-3c-WaW" userLabel="recordButton1">
-                                <frame key="frameInset" minX="16" minY="480" width="172" height="167"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="recordButton"/>
-                                <connections>
-                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfT-Mt-Zsr"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Press and hold to talk)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-cX-OTr" userLabel="recordContent">
-                                <frame key="frameInset" minX="16" minY="358" width="347" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="BPC-Bj-fnS">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HS-qW-cRH">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="English"/>
+                                        <connections>
+                                            <action selector="languageButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="weJ-AN-oQs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-3c-WaW" userLabel="recordButton1">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="KfG-3S-RGX"/>
+                                            <constraint firstAttribute="height" constant="100" id="SA3-iy-f3U"/>
+                                        </constraints>
+                                        <state key="normal" image="recordButton"/>
+                                        <connections>
+                                            <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfT-Mt-Zsr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Press to talk)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-cX-OTr" userLabel="recordContent">
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvh-E3-iOu" userLabel="languageImage2">
-                                <frame key="frameInset" minX="187" minY="136" width="172" height="188"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chinese"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="t3B-sQ-POZ">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvh-E3-iOu">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Chinese"/>
+                                        <connections>
+                                            <action selector="languageButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X0q-se-v71"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6S-Xo-NZ4" userLabel="recordButton2">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Hyt-ly-bjX"/>
+                                            <constraint firstAttribute="width" constant="100" id="LsW-Ni-tVt"/>
+                                        </constraints>
+                                        <state key="normal" image="recordButton"/>
+                                        <connections>
+                                            <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xKs-VK-S0u"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-WP-TvJ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="2tm-eL-tiV"/>
+                                </constraints>
                                 <connections>
-                                    <segue destination="jDS-qG-pre" kind="show" identifier="LanguageSelectionSegue1" id="ZuE-4S-VMN"/>
+                                    <segue destination="jDS-qG-pre" kind="embed" identifier="selectLanguageSegue" id="lHK-z3-JOM"/>
                                 </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oAC-WP-TvJ" secondAttribute="trailing" constant="-20" id="1SJ-jR-ZxU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="BPC-Bj-fnS" secondAttribute="leading" id="1gy-im-tZh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t3B-sQ-POZ" secondAttribute="trailing" id="26D-sP-zUi"/>
+                            <constraint firstItem="t3B-sQ-POZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="6dJ-ia-Kv5"/>
+                            <constraint firstItem="3Es-cX-OTr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBG-Re-51G"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Es-cX-OTr" secondAttribute="bottom" constant="100" id="EvR-xK-hs5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oAC-WP-TvJ" secondAttribute="bottom" constant="-250" id="OD2-AW-CeF"/>
+                            <constraint firstItem="t3B-sQ-POZ" firstAttribute="width" secondItem="BPC-Bj-fnS" secondAttribute="width" id="YX4-sJ-v0R"/>
+                            <constraint firstItem="t3B-sQ-POZ" firstAttribute="leading" secondItem="BPC-Bj-fnS" secondAttribute="trailing" constant="20" id="ZKJ-gm-dJj"/>
+                            <constraint firstItem="BPC-Bj-fnS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="kWV-no-hEP"/>
+                            <constraint firstItem="oAC-WP-TvJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="yuK-TS-AUn"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kn8-gg-kU9"/>
+                    <navigationItem key="navigationItem" title="Eastern T" id="kn8-gg-kU9"/>
                     <connections>
                         <outlet property="chooseLangButtonA" destination="9HS-qW-cRH" id="iEh-Fm-PCF"/>
                         <outlet property="chooseLangButtonB" destination="jvh-E3-iOu" id="bdJ-xm-ef6"/>
                         <outlet property="recordButtonA" destination="VY6-3c-WaW" id="DtY-Cg-x9M"/>
                         <outlet property="recordButtonB" destination="H6S-Xo-NZ4" id="rqR-7F-41B"/>
+                        <outlet property="selectLanguageContainer" destination="oAC-WP-TvJ" id="ynd-n7-gdl"/>
+                        <outlet property="selectLanguageContainerBottom" destination="OD2-AW-CeF" id="Mdl-Yk-J8s"/>
                         <outlet property="speechLabel" destination="3Es-cX-OTr" id="1oB-kX-ryd"/>
                     </connections>
                 </viewController>
@@ -83,17 +114,17 @@
                         <viewControllerLayoutGuide type="bottom" id="4LN-Ef-8zC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t1y-Jn-3s8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jop-Q5-yL5">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="languageCell" id="m8R-rQ-bfW" customClass="SelectLanguageTableViewCell" customModule="EasternT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="351" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8R-rQ-bfW" id="LEg-o2-ErM">
-                                            <frame key="frameInset" width="343" height="44"/>
+                                            <frame key="frameInset" width="351" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -138,7 +169,4 @@
     <resources>
         <image name="recordButton" width="100" height="100"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hMj-9S-JWO"/>
-    </inferredMetricsTieBreakers>
 </document>
