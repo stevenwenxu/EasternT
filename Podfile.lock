@@ -1,12 +1,15 @@
 PODS:
+  - Alamofire (4.0.0)
   - QuickBlox (2.8)
 
 DEPENDENCIES:
+  - Alamofire
   - QuickBlox
 
 SPEC CHECKSUMS:
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   QuickBlox: f2bcadce2e150b8b1385f74f037b067aa670b069
 
-PODFILE CHECKSUM: c70555c88f45b55aa4d1bbd9c8207c72a77521e0
+PODFILE CHECKSUM: d43006af84834f3a9525cbee50ae45e931978e0c
 
 COCOAPODS: 1.0.1
