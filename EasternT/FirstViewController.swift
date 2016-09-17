@@ -23,6 +23,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
 
     @IBOutlet weak var recordButtonA: UIButton!
     @IBOutlet weak var recordButtonB: UIButton!
+    @IBOutlet weak var chooseLangButtonA: UIButton!
+    @IBOutlet weak var chooseLangButtonB: UIButton!
+
     @IBOutlet weak var speechLabel: UILabel!
     
     var indexToggle : Int = 0
@@ -144,9 +147,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     
     func writeValueBack(languageName: String) {
         if 1 == self.indexToggle {
-            self.recordButtonA.setTitle(languageName, for: .normal)
+            self.chooseLangButtonA.setTitle(languageName, for: .normal)
         } else {
-            self.recordButtonB.setTitle(languageName, for: .normal)
+            self.chooseLangButtonB.setTitle(languageName, for: .normal)
         }
     }
 

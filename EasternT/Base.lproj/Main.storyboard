@@ -31,6 +31,9 @@
                                 <frame key="frameInset" minX="187" minY="480" width="172" height="179"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="recordButton"/>
+                                <connections>
+                                    <action selector="recordButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xKs-VK-S0u"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-3c-WaW" userLabel="recordButton1">
                                 <frame key="frameInset" minX="16" minY="480" width="172" height="167"/>
@@ -60,6 +63,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="kn8-gg-kU9"/>
                     <connections>
+                        <outlet property="chooseLangButtonA" destination="9HS-qW-cRH" id="iEh-Fm-PCF"/>
+                        <outlet property="chooseLangButtonB" destination="jvh-E3-iOu" id="bdJ-xm-ef6"/>
                         <outlet property="recordButtonA" destination="VY6-3c-WaW" id="DtY-Cg-x9M"/>
                         <outlet property="recordButtonB" destination="H6S-Xo-NZ4" id="rqR-7F-41B"/>
                         <outlet property="speechLabel" destination="3Es-cX-OTr" id="1oB-kX-ryd"/>
