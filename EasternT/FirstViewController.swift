@@ -42,6 +42,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        TokenManager.sharedInstance.refreshToken()
         self.speechRecognizer.delegate = self
         self.requestPermission()
     }
