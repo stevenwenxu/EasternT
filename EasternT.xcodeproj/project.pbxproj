@@ -32,7 +32,7 @@
 		B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTranslator.swift; sourceTree = "<group>"; };
 		B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETBrain.swift; sourceTree = "<group>"; };
 		CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.release.xcconfig"; sourceTree = "<group>"; };
-		CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "EasternT/Bridging-Header.h"; sourceTree = "<group>"; };
+		CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "/Users/calvinzhou/devel/EasternT/EasternT/Bridging-Header.h"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,7 +356,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasternT/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -373,7 +373,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasternT/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
