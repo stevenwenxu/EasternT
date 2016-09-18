@@ -58,6 +58,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             } else {
                 self.selectedRecordButton.imageView?.stopAnimating()
                 self.selectedRecordButton.setImage(self.normal, for: .normal)
+                self.recognitionTask = nil
             }
         }
     }
@@ -88,11 +89,16 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             self.recognitionRequest?.endAudio()
             audioEngine.inputNode?.removeTap(onBus: 0)
             self.isRecordingInProgress = false
-            
-            if 0 != self.inputText.characters.count % 6 {
-                let recognizedTextLength = self.inputText.characters.count
-                let textChunk = String(Array(self.inputText.characters)[recognizedTextLength - recognizedTextLength % 6 - 1...recognizedTextLength - 1])
+
+            var recognizedTextWordList = self.inputText.tokenize()
+            let recognizedTextWordListLength = recognizedTextWordList.count
+            if 0 != recognizedTextWordListLength % 6 {
+                let lastWantedItemIndex = recognizedTextWordListLength % 6
+                let range = recognizedTextWordList.endIndex.advanced(by: 1 - lastWantedItemIndex)..<recognizedTextWordList.endIndex
+                let textChunk = recognizedTextWordList[range].joined(separator: " ")
+                NSLog("textChunk is: \(textChunk)")
                 self.translateTextChunkList.append(textChunk)
+                self.textChunkSemaphore.signal()
             }
             
         } else {
@@ -169,29 +175,31 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
                 } else {
                     let languageTypeFrom = (self.isLeftButton) ? self.languageTypeA : self.languageTypeB
                     let languageTypeTo = (!self.isLeftButton) ? self.languageTypeA : self.languageTypeB
-                    
-                    NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
+                    let translateTextChunk = self.translateTextChunkList[0]
+                    self.translateTextChunkList.remove(at: 0)
+
+                    NetworkManager.sharedInstance.getTranslate(originText: translateTextChunk, from: languageTypeFrom, to: languageTypeTo) { string in
                         if let str = string {
                             self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                            self.chatManager.disconnectUser()
-                            
-                            let user1 = QBUUser()
-                            let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
-                            
-                            user1.login = userDeviceID
-                            user1.password = "12345678"
-                            
-                            self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
-                            self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
-                            
-                            print("----fuckers----")
-                            print(user1.blobID)
-                            print(user1.login)
-                            print(user1.id)
-                            print("----fuckers end---")
-                            self.chatManager.connectUser(user: user1)
-                            self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
-                            
+//                            self.chatManager.disconnectUser()
+
+//                            let user1 = QBUUser()
+//                            let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
+//                            
+//                            user1.login = userDeviceID
+//                            user1.password = "12345678"
+//                            
+//                            self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
+//                            self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
+//                            
+//                            print("----fuckers----")
+//                            print(user1.blobID)
+//                            print(user1.login)
+//                            print(user1.id)
+//                            print("----fuckers end---")
+//                            self.chatManager.connectUser(user: user1)
+//                            self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
+
                         }
                     }
                 }
@@ -208,7 +216,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             }
 
             if let weakSelf = self, let result = result {
-                var recognizedText = result.bestTranscription.formattedString
+                let recognizedText = result.bestTranscription.formattedString
                 weakSelf.inputText = recognizedText
                 weakSelf.speechLabel.text = recognizedText
                 
@@ -259,9 +267,12 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     }
     
     func tryTranslateText(recognizedText: String) {
-        let recognizedTextLength = recognizedText.characters.count
-        if (0 < recognizedTextLength && 0 == recognizedTextLength % 6) {
-            let textChunk = String(Array(recognizedText.characters)[recognizedTextLength - 6...recognizedTextLength - 1])
+        var recognizedTextWordList = recognizedText.tokenize()
+        let recognizedTextWordListLength = recognizedTextWordList.count
+        if (0 < recognizedTextWordListLength && 0 == recognizedTextWordListLength % 6) {
+            let range = recognizedTextWordList.endIndex.advanced(by: -5)..<recognizedTextWordList.endIndex
+            let textChunk = recognizedTextWordList[range].joined(separator: " ")
+            NSLog("textChunk is: \(textChunk)")
             self.translateTextChunkList.append(textChunk)
             self.textChunkSemaphore.signal()
         }
