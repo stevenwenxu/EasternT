@@ -38,7 +38,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     let doge = UIImage(named: "doge")
     let normal = UIImage(named: "recordButton")
     var waveImages = [UIImage]()
-    let chatManager = ChatManager()
+//    let chatManager = ChatManager()
     var userId : UInt = 0
     
     var inputText = ""
@@ -87,28 +87,8 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    if (QBChat.instance().isConnected) {
-                        self.chatManager.disconnectUser()
-                    }
-                    QBChat.initialize()
-                    let user1 = QBUUser()
-                    let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
-                    
-                    user1.login = userDeviceID
-                    user1.password = "12345678"
-                    
-                    if (user1.lastRequestAt != nil) {
-                        self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
-                    }
-                    print(user1.id)
-                    self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
-                    
-                    user1.id = 17883492
-                    user1.password = "12345678"
-                    self.chatManager.connectUser(user: user1)
-//                    self.chatManager.connectUser(user: user1)
-
-                    self.chatManager.createChatDialogAndSendMessage(dialogName: "GOD", messageText: str, userIds: [17883492, 17882614])
+                    let manager = SocketIOManger()
+                    manager.getConnected()
 
                 }
             }
