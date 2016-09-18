@@ -43,8 +43,10 @@ class ChatManager : NSObject, QBChatDelegate {
     }
     
     func connectUser(user:QBUUser) -> Void {
-        QBChat.instance().connect(with: user) { (error) in
-            print("wtf?? " + error.debugDescription)
+        if (!QBChat.instance().isConnected) {
+            QBChat.instance().connect(with: user) { (error) in
+                print("why why why I don't understand " + error.debugDescription)
+            }
         }
 
     }
@@ -55,25 +57,31 @@ class ChatManager : NSObject, QBChatDelegate {
         chatDialog.occupantIDs = userIds
         QBRequest.createDialog(chatDialog, successBlock: { (response: QBResponse?, createdDialog : QBChatDialog?) -> Void in
             print("fuck yell")
+            chatDialog.join(completionBlock: { (error) in
+                print("fail to join the chat " + error.debugDescription)
+            })
+            let message: QBChatMessage = QBChatMessage()
+            message.text = messageText
+            let params : NSMutableDictionary = NSMutableDictionary()
+            params["save_to_history"] = true
+            message.customParameters = params
+            chatDialog.occupantIDs?.forEach({ (occupantID) in
+                message.recipientID = occupantID.uintValue
+            })
+            chatDialog.send(message, completionBlock: { (error) in
+                print("Sending message in sendMessage method " + message.text! + error.debugDescription)
+            });
         }) { (responce : QBResponse!) -> Void in
             print("error", responce)
         }
         
         QBChat.instance().addDelegate(self)
 
-        let message: QBChatMessage = QBChatMessage()
-        message.text = messageText
-        let params : NSMutableDictionary = NSMutableDictionary()
-        params["save_to_history"] = true
-        message.customParameters = params
         
-        chatDialog.send(message, completionBlock: { (error) in
-            print("Sending message in sendMessage method " + message.text!)
-        });
     }
     
-    func chatDidReceiveMessage(message: QBChatMessage!){
-        print("You got the message" + message.text!)
+    func chatRoomDidReceiveMessage(message: QBChatMessage!, fromDialogID dialogID: String!) {
+        
     }
 }
     
