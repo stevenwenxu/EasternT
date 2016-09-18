@@ -26,6 +26,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     @IBOutlet weak var chooseLangButtonA: UIButton!
     @IBOutlet weak var chooseLangButtonB: UIButton!
     var selectedChooseLangBtn: UIButton!
+    var selectedRecordButton: UIButton!
     @IBOutlet var selectLanguageContainerBottom: NSLayoutConstraint!
     @IBOutlet weak var selectLanguageContainer: UIView!
 
@@ -36,6 +37,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     
     let doge = UIImage(named: "doge")
     let normal = UIImage(named: "recordButton")
+    var waveImages = [UIImage]()
     let chatManager = ChatManager()
     var userId : UInt = 0
     
@@ -44,11 +46,13 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     private var isRecordingInProgress = false {
         didSet {
             if (self.isRecordingInProgress) {
-                self.recordButtonA.setImage(self.doge, for: .normal)
-                self.recordButtonB.setImage(self.doge, for: .normal)
+                self.selectedRecordButton.setImage(UIImage(named: "tmp-1"), for: .normal)
+                self.selectedRecordButton.imageView?.animationImages = self.waveImages
+                self.selectedRecordButton.imageView?.animationDuration = 0
+                self.selectedRecordButton.imageView?.startAnimating()
             } else {
-                self.recordButtonA.setImage(self.normal, for: .normal)
-                self.recordButtonB.setImage(self.normal, for: .normal)
+                self.selectedRecordButton.imageView?.stopAnimating()
+                self.selectedRecordButton.setImage(self.normal, for: .normal)
             }
         }
     }
@@ -62,13 +66,15 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         self.speechRecognizer.delegate = self
         self.requestPermission()
 
-        self.chooseLangButtonA.tag = 0
-        self.chooseLangButtonB.tag = 1
+        for i in 0...40 {
+            self.waveImages.append(UIImage(named: "tmp-\(i)")!)
+        }
     }
 
     @IBAction func recordButtonTapped(sender: UIButton) {
         // QuickBlox Chat stuffs
-    
+
+        self.selectedRecordButton = sender
         let isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
         let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
