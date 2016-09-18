@@ -34,12 +34,12 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     var languageTypeB: LanguageType = .chinese
 
     @IBOutlet weak var speechLabel: UILabel!
-    
+
     let normal = UIImage(named: "recordButton")
     var waveImages = [UIImage]()
 //    let chatManager = ChatManager()
     var userId : UInt = 0
-    
+
     var inputText = ""
 
     private var isRecordingInProgress = false {
@@ -77,7 +77,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         let isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
         let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
-        
+
         if audioEngine.isRunning || self.isRecordingInProgress {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -86,7 +86,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    let manager = SocketIOManger()
+                    let manager = SocketIOManager()
                     manager.getConnected()
 
                 }
@@ -95,7 +95,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             do {
                 speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: languageTypeStringMapB[languageTypeFrom]!))!
                 speechRecognizer.delegate = self
-                
+
                 try self.startRecording()
                 self.isRecordingInProgress = true
             } catch {
@@ -137,13 +137,13 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     }
 
     func startRecording() throws {
-        
+
         // Cancel the previous task if it's running.
         if let recognitionTask = self.recognitionTask {
             recognitionTask.cancel()
             self.recognitionTask = nil
         }
-        
+
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try audioSession.setMode(AVAudioSessionModeMeasurement)
@@ -195,9 +195,9 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         try self.audioEngine.start()
         self.speechLabel.text = "(Go ahead, I'm listening)"
     }
-    
+
     // MARK: - WriteValueBackDelegate
-    
+
     func writeValueBack(languageType: LanguageType) {
         UIView.animate(withDuration: 0.5) {
             self.selectedChooseLangBtn?.setTitle(languageType.rawValue, for: .normal)

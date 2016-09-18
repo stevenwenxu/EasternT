@@ -34,7 +34,6 @@ class RealTimeViewController: UIViewController, SFSpeechRecognizerDelegate, Writ
 
     let normal = UIImage(named: "recordButton")
     var waveImages = [UIImage]()
-    let chatManager = ChatManager()
     var userId : UInt = 0
 
     var inputText = ""
@@ -214,7 +213,7 @@ class RealTimeViewController: UIViewController, SFSpeechRecognizerDelegate, Writ
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.recordButton.isEnabled = available
     }
-    
+
     func tryTranslateText(recognizedText: String) {
         var recognizedTextWordList = recognizedText.tokenize()
         let recognizedTextWordListLength = recognizedTextWordList.count
