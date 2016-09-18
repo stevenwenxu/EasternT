@@ -37,7 +37,7 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     
     let normal = UIImage(named: "recordButton")
     var waveImages = [UIImage]()
-    let chatManager = ChatManager()
+//    let chatManager = ChatManager()
     var userId : UInt = 0
     
     var inputText = ""
@@ -86,24 +86,8 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    self.chatManager.disconnectUser()
-
-                    let user1 = QBUUser()
-                    let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
-                    
-                    user1.login = userDeviceID
-                    user1.password = "12345678"
-                    
-                    self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
-                    self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
-                    
-                    print("----fuckers----")
-                    print(user1.blobID)
-                    print(user1.login)
-                    print(user1.id)
-                    print("----fuckers end---")
-                    self.chatManager.connectUser(user: user1)
-                    self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
+                    let manager = SocketIOManger()
+                    manager.getConnected()
 
                 }
             }

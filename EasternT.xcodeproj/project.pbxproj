@@ -20,6 +20,7 @@
 		B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */; };
 		B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */; };
 		B0F0B9D21D8D317F00D85DE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */; };
+		CCA869C61D8EB60E00289F4D /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA869C51D8EB60E00289F4D /* SocketIOManager.swift */; };
 		CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,7 @@
 		B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETBrain.swift; sourceTree = "<group>"; };
 		B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../NetworkManager.swift; sourceTree = "<group>"; };
 		CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.release.xcconfig"; sourceTree = "<group>"; };
-		CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "EasternT/Bridging-Header.h"; sourceTree = "<group>"; };
+		CCA869C51D8EB60E00289F4D /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +70,6 @@
 		B0F0B9AF1D8CCEB200D85DE4 = {
 			isa = PBXGroup;
 			children = (
-				CCFA8E2A1D8D211400A536AE /* Bridging-Header.h */,
 				B0F0B9BA1D8CCEB200D85DE4 /* EasternT */,
 				B0F0B9B91D8CCEB200D85DE4 /* Products */,
 				690062F6CD72E4CE46255E66 /* Pods */,
@@ -102,6 +102,7 @@
 				B0F0B9C41D8CCEB200D85DE4 /* LaunchScreen.storyboard */,
 				B0F0B9C71D8CCEB200D85DE4 /* Info.plist */,
 				CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */,
+				CCA869C51D8EB60E00289F4D /* SocketIOManager.swift */,
 			);
 			path = EasternT;
 			sourceTree = "<group>";
@@ -149,7 +150,7 @@
 				TargetAttributes = {
 					B0F0B9B71D8CCEB200D85DE4 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6E2PC57P73;
+						DevelopmentTeam = V3D37Y98ZT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -244,6 +245,7 @@
 				B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */,
 				B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */,
 				CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */,
+				CCA869C61D8EB60E00289F4D /* SocketIOManager.swift in Sources */,
 				B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */,
 				B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */,
 				328893911D8DD3D500887F8C /* StringTokenizer.swift in Sources */,
@@ -369,14 +371,14 @@
 			baseConfigurationReference = AEFC6863591AC50C96D91FD6 /* Pods-EasternT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6E2PC57P73;
+				DEVELOPMENT_TEAM = V3D37Y98ZT;
 				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = EasternT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.czhou.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "EasternT/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -386,14 +388,14 @@
 			baseConfigurationReference = CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6E2PC57P73;
+				DEVELOPMENT_TEAM = V3D37Y98ZT;
 				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = EasternT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.sxu.EasternT;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.czhou.EasternT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "EasternT/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

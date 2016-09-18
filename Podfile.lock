@@ -1,15 +1,15 @@
 PODS:
   - Alamofire (4.0.0)
-  - QuickBlox (2.8)
+  - Socket.IO-Client-Swift (8.0.0)
 
 DEPENDENCIES:
   - Alamofire
-  - QuickBlox
+  - Socket.IO-Client-Swift
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
-  QuickBlox: f2bcadce2e150b8b1385f74f037b067aa670b069
+  Socket.IO-Client-Swift: b5f6c274ad849b2b73717546dcf29d48ead707eb
 
-PODFILE CHECKSUM: d43006af84834f3a9525cbee50ae45e931978e0c
+PODFILE CHECKSUM: 55fd9b5af1b8a0521119b21e8fcc074638b6d8b6
 
 COCOAPODS: 1.1.0.rc.2
