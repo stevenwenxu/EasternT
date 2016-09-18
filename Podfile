@@ -3,5 +3,5 @@ use_frameworks!
 
 target 'EasternT' do
   pod 'Alamofire'
-  pod 'Socket.IO-Client-Swift'
+  pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream.git', :branch => 'swift3'
 end

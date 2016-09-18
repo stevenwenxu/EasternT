@@ -86,9 +86,6 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
                 if let str = string {
                     self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    let manager = SocketIOManager()
-                    manager.getConnected()
-
                 }
             }
         } else {

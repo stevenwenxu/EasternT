@@ -120,7 +120,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQU-TE-8nZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="671" y="640"/>
+            <point key="canvasLocation" x="738" y="673"/>
         </scene>
         <!--Real Time-->
         <scene sceneID="SPW-ZI-4DY">
@@ -186,7 +186,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="GRw-Cy-w9x" secondAttribute="trailing" id="9cG-Ih-t8D"/>
                             <constraint firstItem="iIk-df-jb8" firstAttribute="leading" secondItem="9sy-hz-n9v" secondAttribute="leadingMargin" constant="-20" id="A5Y-Cv-Vdr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iIk-df-jb8" secondAttribute="trailing" constant="-20" id="OkT-YH-Ggd"/>
-                            <constraint firstItem="lqo-bz-mxu" firstAttribute="top" secondItem="GRw-Cy-w9x" secondAttribute="bottom" constant="200" id="S7G-ub-9Dt"/>
+                            <constraint firstItem="GRw-Cy-w9x" firstAttribute="top" secondItem="gEM-Uh-3Wv" secondAttribute="bottom" constant="80" id="Sil-J8-7FU"/>
                             <constraint firstItem="lz1-9M-ULt" firstAttribute="leading" secondItem="9sy-hz-n9v" secondAttribute="leadingMargin" constant="32" id="T4j-I8-4wu"/>
                             <constraint firstItem="gEM-Uh-3Wv" firstAttribute="centerX" secondItem="9sy-hz-n9v" secondAttribute="centerX" id="TJi-R1-yCn"/>
                             <constraint firstItem="gEM-Uh-3Wv" firstAttribute="top" secondItem="Jr8-rC-VF6" secondAttribute="bottom" constant="150" id="Wx1-6S-yOa"/>
@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uev-WC-5wg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="638.2308845577212"/>
+            <point key="canvasLocation" x="1650" y="672"/>
         </scene>
         <!--Select Language View Controller-->
         <scene sceneID="0XU-Qs-xYz">
@@ -252,11 +252,11 @@
             </objects>
             <point key="canvasLocation" x="2999" y="131"/>
         </scene>
-        <!--Item-->
+        <!--Turn By Turn-->
         <scene sceneID="GE5-rk-GHH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="di8-kd-WbW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="g1R-SU-QDI"/>
+                    <tabBarItem key="tabBarItem" title="Turn By Turn" id="g1R-SU-QDI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hOg-QO-3gO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -277,23 +277,132 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xgE-xa-wO8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="mtZ-on-nBM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="di8-kd-WbW" kind="relationship" relationship="viewControllers" id="img-QP-FfI"/>
                         <segue destination="Ina-KB-9sO" kind="relationship" relationship="viewControllers" id="EpN-60-d0A"/>
+                        <segue destination="1kH-tl-gGR" kind="relationship" relationship="viewControllers" id="n39-8v-TQn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eny-e0-g25" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-295.19999999999999" y="-91.304347826086968"/>
         </scene>
+        <!--Real Time-->
+        <scene sceneID="w0r-FJ-7dA">
+            <objects>
+                <viewController id="7eQ-cv-ZuZ" customClass="SocketViewController" customModule="EasternT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WHW-3y-HJu"/>
+                        <viewControllerLayoutGuide type="bottom" id="qb8-iU-z43"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oqs-qN-l4D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyc-lB-zqL">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0Ne-ED-9ac"/>
+                                    <constraint firstAttribute="width" constant="100" id="gR0-L3-M5W"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="recordButton"/>
+                                <connections>
+                                    <action selector="recordButtonTappedWithSender:" destination="7eQ-cv-ZuZ" eventType="touchUpInside" id="pJT-mg-YMm"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV3-Hy-sbq">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="tGN-G1-guL"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="jDS-qG-pre" kind="embed" identifier="socketSegue" id="ncB-wR-ruW"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1o-gy-Ahn">
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Output"/>
+                                <connections>
+                                    <action selector="languageButtonDidTap:" destination="7eQ-cv-ZuZ" eventType="touchUpInside" id="qsk-Nj-TCL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-Hs-JWP">
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Input"/>
+                                <connections>
+                                    <action selector="languageButtonDidTap:" destination="7eQ-cv-ZuZ" eventType="touchUpInside" id="MYt-pw-fJe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press to listen" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX4-Vl-zH0">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Result" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Egv-1n-ajf">
+                                <frame key="frameInset" minY="490" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oPp-Hs-JWP" firstAttribute="top" secondItem="WHW-3y-HJu" secondAttribute="bottom" constant="58" id="3nu-Wg-SVH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sV3-Hy-sbq" secondAttribute="trailing" constant="-20" id="6PJ-yr-UfY"/>
+                            <constraint firstItem="oPp-Hs-JWP" firstAttribute="leading" secondItem="oqs-qN-l4D" secondAttribute="leadingMargin" constant="32" id="9Da-fV-wqo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D1o-gy-Ahn" secondAttribute="trailing" constant="25" id="AUX-K2-pnI"/>
+                            <constraint firstItem="qb8-iU-z43" firstAttribute="top" secondItem="sV3-Hy-sbq" secondAttribute="bottom" constant="-250" id="DA1-EF-9AI"/>
+                            <constraint firstItem="kyc-lB-zqL" firstAttribute="top" secondItem="WHW-3y-HJu" secondAttribute="bottom" constant="150" id="Meh-dj-waE"/>
+                            <constraint firstItem="D1o-gy-Ahn" firstAttribute="top" secondItem="WHW-3y-HJu" secondAttribute="bottom" constant="58" id="gpO-GV-PoM"/>
+                            <constraint firstItem="sX4-Vl-zH0" firstAttribute="top" secondItem="kyc-lB-zqL" secondAttribute="bottom" constant="80" id="nsj-hw-ynp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sX4-Vl-zH0" secondAttribute="trailing" id="oSb-5g-1WT"/>
+                            <constraint firstItem="sX4-Vl-zH0" firstAttribute="leading" secondItem="oqs-qN-l4D" secondAttribute="leadingMargin" id="w2S-57-pZc"/>
+                            <constraint firstItem="sV3-Hy-sbq" firstAttribute="leading" secondItem="oqs-qN-l4D" secondAttribute="leadingMargin" constant="-20" id="wbn-qn-tq5"/>
+                            <constraint firstItem="kyc-lB-zqL" firstAttribute="centerX" secondItem="oqs-qN-l4D" secondAttribute="centerX" id="z69-gX-vlD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Real Time" id="lL6-fo-70e"/>
+                    <connections>
+                        <outlet property="chooseLangButtonA" destination="oPp-Hs-JWP" id="tY5-fy-Ie8"/>
+                        <outlet property="chooseLangButtonB" destination="D1o-gy-Ahn" id="fxe-sn-zBy"/>
+                        <outlet property="recordButton" destination="kyc-lB-zqL" id="FWV-TU-DcC"/>
+                        <outlet property="resultTextView" destination="Egv-1n-ajf" id="p9Z-Yq-gcy"/>
+                        <outlet property="selectLanguageContainer" destination="sV3-Hy-sbq" id="Q0Y-5l-lyJ"/>
+                        <outlet property="selectLanguageContainerBottom" destination="DA1-EF-9AI" id="0rm-qa-Xl7"/>
+                        <outlet property="speechLabel" destination="sX4-Vl-zH0" id="syx-hZ-K9O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IaS-Vt-nKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="1507"/>
+        </scene>
+        <!--Conversation-->
+        <scene sceneID="iCf-H9-Wpp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1kH-tl-gGR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Conversation" id="nfB-FT-i6l"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DYY-lf-IAZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7eQ-cv-ZuZ" kind="relationship" relationship="rootViewController" id="hPd-ue-lJe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MpK-Pp-jeo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="737" y="1508"/>
+        </scene>
     </scenes>
     <resources>
         <image name="recordButton" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="H0w-m9-BmR"/>
+        <segue reference="lHK-z3-JOM"/>
     </inferredMetricsTieBreakers>
 </document>

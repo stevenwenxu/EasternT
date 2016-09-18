@@ -110,6 +110,9 @@ class RealTimeViewController: UIViewController, SFSpeechRecognizerDelegate, Writ
         if (segue.identifier == "realTimeSelectSegue") {
             let selectLanguageVC = segue.destination as! SelectLanguageViewController
             selectLanguageVC.delegate = self
+        } else if segue.identifier == "socketSegue" {
+            let vc = segue.destination as! SelectLanguageViewController
+            vc.delegate = self
         }
     }
 
@@ -148,6 +151,10 @@ class RealTimeViewController: UIViewController, SFSpeechRecognizerDelegate, Writ
                     NetworkManager.sharedInstance.getTranslate(originText: translateTextChunk, from: languageTypeFrom, to: languageTypeTo) { string in
                         if let str = string {
                             self.resultTextView.text = str
+                            if self is SocketViewController {
+                                let vc = self as! SocketViewController
+                                vc.writeString(string: str)
+                            }
 //                            self.model.textToSpeech(text: str, languageType: languageTypeTo)
                         }
                     }
