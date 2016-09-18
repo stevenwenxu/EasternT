@@ -42,6 +42,11 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     var userId : UInt = 0
     
     var inputText = ""
+    
+    var isLeftButton = true
+    
+    var translateTextChunkList: [String] = []
+    var textChunkSemaphore = DispatchSemaphore(value: 0)
 
     private var isRecordingInProgress = false {
         didSet {
@@ -75,39 +80,21 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         // QuickBlox Chat stuffs
 
         self.selectedRecordButton = sender
-        let isLeftButton = sender == self.recordButtonA
+        self.isLeftButton = sender == self.recordButtonA
         let languageTypeFrom = (isLeftButton) ? self.languageTypeA : self.languageTypeB
-        let languageTypeTo = (!isLeftButton) ? self.languageTypeA : self.languageTypeB
         
         if audioEngine.isRunning || self.isRecordingInProgress {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             audioEngine.inputNode?.removeTap(onBus: 0)
             self.isRecordingInProgress = false
-            NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
-                if let str = string {
-                    self.model.textToSpeech(text: str, languageType: languageTypeTo)
-                    self.chatManager.disconnectUser()
-
-                    let user1 = QBUUser()
-                    let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
-                    
-                    user1.login = userDeviceID
-                    user1.password = "12345678"
-                    
-                    self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
-                    self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
-                    
-                    print("----fuckers----")
-                    print(user1.blobID)
-                    print(user1.login)
-                    print(user1.id)
-                    print("----fuckers end---")
-                    self.chatManager.connectUser(user: user1)
-                    self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
-
-                }
+            
+            if 0 != self.inputText.characters.count % 6 {
+                let recognizedTextLength = self.inputText.characters.count
+                let textChunk = String(Array(self.inputText.characters)[recognizedTextLength - recognizedTextLength % 6 - 1...recognizedTextLength - 1])
+                self.translateTextChunkList.append(textChunk)
             }
+            
         } else {
             do {
                 speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: languageTypeStringMapB[languageTypeFrom]!))!
@@ -174,6 +161,43 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
         // Configure request so that results are returned before audio recording is finished
         recognitionRequest.shouldReportPartialResults = true
 
+        // Initialize the translation service
+        DispatchQueue.global(qos: .background).async {
+            while (true) {
+                if 0 == self.translateTextChunkList.count {
+                    self.textChunkSemaphore.wait()
+                } else {
+                    let languageTypeFrom = (self.isLeftButton) ? self.languageTypeA : self.languageTypeB
+                    let languageTypeTo = (!self.isLeftButton) ? self.languageTypeA : self.languageTypeB
+                    
+                    NetworkManager.sharedInstance.getTranslate(originText: self.inputText, from: languageTypeFrom, to: languageTypeTo) { string in
+                        if let str = string {
+                            self.model.textToSpeech(text: str, languageType: languageTypeTo)
+                            self.chatManager.disconnectUser()
+                            
+                            let user1 = QBUUser()
+                            let userDeviceID = UIDevice.current.identifierForVendor!.uuidString
+                            
+                            user1.login = userDeviceID
+                            user1.password = "12345678"
+                            
+                            self.chatManager.signupUser(userLogin: userDeviceID, password:"12345678")
+                            self.chatManager.loginUser(userLogin: userDeviceID, password: "12345678")
+                            
+                            print("----fuckers----")
+                            print(user1.blobID)
+                            print(user1.login)
+                            print(user1.id)
+                            print("----fuckers end---")
+                            self.chatManager.connectUser(user: user1)
+                            self.chatManager.createChatDialogAndSendMessage(dialogName: "LOL", messageText: str, userIds: [17869832, 17874435])
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
         // A recognition task represents a speech recognition session.
         // We keep a reference to the task so that it can be cancelled.
         self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
@@ -184,8 +208,12 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
             }
 
             if let weakSelf = self, let result = result {
-                weakSelf.inputText = result.bestTranscription.formattedString
-                weakSelf.speechLabel.text = result.bestTranscription.formattedString
+                var recognizedText = result.bestTranscription.formattedString
+                weakSelf.inputText = recognizedText
+                weakSelf.speechLabel.text = recognizedText
+                
+                weakSelf.tryTranslateText(recognizedText: recognizedText)
+                
                 isFinal = result.isFinal
 
                 if error != nil || isFinal {
@@ -228,5 +256,14 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.recordButtonA.isEnabled = available
         self.recordButtonB.isEnabled = available
+    }
+    
+    func tryTranslateText(recognizedText: String) {
+        let recognizedTextLength = recognizedText.characters.count
+        if (0 < recognizedTextLength && 0 == recognizedTextLength % 6) {
+            let textChunk = String(Array(recognizedText.characters)[recognizedTextLength - 6...recognizedTextLength - 1])
+            self.translateTextChunkList.append(textChunk)
+            self.textChunkSemaphore.signal()
+        }
     }
 }
