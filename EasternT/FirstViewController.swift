@@ -37,7 +37,6 @@ class FirstViewController: UIViewController, SFSpeechRecognizerDelegate, WriteVa
 
     let normal = UIImage(named: "recordButton")
     var waveImages = [UIImage]()
-//    let chatManager = ChatManager()
     var userId : UInt = 0
 
     var inputText = ""

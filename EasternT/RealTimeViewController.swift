@@ -66,8 +66,6 @@ class RealTimeViewController: UIViewController, SFSpeechRecognizerDelegate, Writ
         TokenManager.sharedInstance.refreshToken()
         self.speechRecognizer.delegate = self
 
-//        self.resultTextView.
-
         for i in 0...40 {
             self.waveImages.append(UIImage(named: "tmp-\(i)")!)
         }

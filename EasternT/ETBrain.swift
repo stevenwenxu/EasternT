@@ -45,11 +45,6 @@ class ETBrain : NSObject {
         synth.speak(myUtterance)
     }
 
-    func translate(from: String) -> String {
-        let translateApiUrl = "https://api.datamarket.azure.com/data.ashx/Bing/microsofttranslatorspeech/v1/Translation"
-        return ""
-    }
-    
     func tokenizeChinese(originText: String) -> [String] {
         return originText.tokenize()
     }

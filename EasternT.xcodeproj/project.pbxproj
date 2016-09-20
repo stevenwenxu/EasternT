@@ -18,10 +18,8 @@
 		B0F0B9C11D8CCEB200D85DE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0F0B9BF1D8CCEB200D85DE4 /* Main.storyboard */; };
 		B0F0B9C31D8CCEB200D85DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0F0B9C21D8CCEB200D85DE4 /* Assets.xcassets */; };
 		B0F0B9C61D8CCEB200D85DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0F0B9C41D8CCEB200D85DE4 /* LaunchScreen.storyboard */; };
-		B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */; };
 		B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */; };
 		B0F0B9D21D8D317F00D85DE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */; };
-		CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,11 +37,9 @@
 		B0F0B9C21D8CCEB200D85DE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0F0B9C51D8CCEB200D85DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0F0B9C71D8CCEB200D85DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTranslator.swift; sourceTree = "<group>"; };
 		B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETBrain.swift; sourceTree = "<group>"; };
 		B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../NetworkManager.swift; sourceTree = "<group>"; };
 		CB5BA030439BF4621F041D4A /* Pods-EasternT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasternT.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasternT/Pods-EasternT.release.xcconfig"; sourceTree = "<group>"; };
-		CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +89,6 @@
 				B0F0B9BD1D8CCEB200D85DE4 /* FirstViewController.swift */,
 				32C309FA1D8CE9FA0003C986 /* SelectLanguageViewController.swift */,
 				B04AD1291D8D6B01000BAE66 /* SelectLanguageTableViewCell.swift */,
-				B0F0B9CD1D8CD5B900D85DE4 /* ETTranslator.swift */,
 				B0F0B9CF1D8CD5E300D85DE4 /* ETBrain.swift */,
 				B0F0B9D11D8D317F00D85DE4 /* NetworkManager.swift */,
 				B0F0B9BF1D8CCEB200D85DE4 /* Main.storyboard */,
@@ -102,7 +97,6 @@
 				B0F0B9C21D8CCEB200D85DE4 /* Assets.xcassets */,
 				B0F0B9C41D8CCEB200D85DE4 /* LaunchScreen.storyboard */,
 				B0F0B9C71D8CCEB200D85DE4 /* Info.plist */,
-				CCFA8E2B1D8D3BB600A536AE /* ChatManager.swift */,
 			);
 			path = EasternT;
 			sourceTree = "<group>";
@@ -245,8 +239,6 @@
 				32C309FB1D8CE9FA0003C986 /* SelectLanguageViewController.swift in Sources */,
 				B0F0B9BE1D8CCEB200D85DE4 /* FirstViewController.swift in Sources */,
 				B0F0B9D01D8CD5E300D85DE4 /* ETBrain.swift in Sources */,
-				CCFA8E2C1D8D3BB600A536AE /* ChatManager.swift in Sources */,
-				B0F0B9CE1D8CD5B900D85DE4 /* ETTranslator.swift in Sources */,
 				B0F0B9BC1D8CCEB200D85DE4 /* AppDelegate.swift in Sources */,
 				328893911D8DD3D500887F8C /* StringTokenizer.swift in Sources */,
 				B0B4F3601D8EB1A8006F76EF /* RealTimeViewController.swift in Sources */,
